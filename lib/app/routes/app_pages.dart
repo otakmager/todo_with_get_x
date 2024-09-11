@@ -4,6 +4,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/list/bindings/list_binding.dart';
 import '../modules/list/views/list_view.dart';
+import '../modules/todo_editor/bindings/todo_editor_binding.dart';
+import '../modules/todo_editor/views/todo_editor_view.dart';
 
 part 'app_routes.dart';
 
@@ -22,6 +24,11 @@ class AppPages {
       name: _Paths.LIST,
       page: () => const ListToDoView(),
       binding: ListBinding(),
+    ),
+    GetPage(
+      name: _Paths.TODO_EDITOR,
+      page: () => const TodoEditorView(),
+      binding: TodoEditorBinding(),
     ),
   ];
 }

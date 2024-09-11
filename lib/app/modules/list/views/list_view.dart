@@ -19,7 +19,7 @@ class ListToDoView extends GetView<ListController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
+          Get.toNamed('/todo-editor', arguments: {'type': 'add'});
         },
         child: const Icon(Icons.add),
       ),
