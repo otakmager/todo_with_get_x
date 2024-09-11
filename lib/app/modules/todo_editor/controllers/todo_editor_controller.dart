@@ -74,7 +74,7 @@ class TodoEditorController extends GetxController {
         setUiStateCreate(UiState.success);
         Get.back(); // back to list
         Get.snackbar('Success', 'To Do added successfully',
-            duration: const Duration(seconds: 5));
+            duration: const Duration(seconds: 3));
       } else {
         errorInfo.value = FailureModel(-1, 'Failed to create');
         setUiStateCreate(UiState.error);
@@ -105,7 +105,7 @@ class TodoEditorController extends GetxController {
         setUiStateUpdate(UiState.success);
         Get.back(); // back to list
         Get.snackbar('Success', 'To Do update successfully',
-            duration: const Duration(seconds: 5));
+            duration: const Duration(seconds: 3));
       } else {
         errorInfo.value = FailureModel(-1, 'Failed to update');
         setUiStateUpdate(UiState.error);

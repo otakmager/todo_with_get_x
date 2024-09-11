@@ -58,6 +58,8 @@ class ListController extends GetxController {
       if (result) {
         setUiStateDel(UiState.success);
         list.removeWhere((element) => element?.id == id);
+        Get.snackbar('Success', 'To Do deleted successfully',
+            duration: const Duration(seconds: 3));
       } else {
         errorInfo.value = FailureModel(-1, 'Failed to delete');
         setUiStateDel(UiState.error);
