@@ -13,7 +13,7 @@ class ListController extends GetxController {
   var uiStateGet = Rxn<UiState>();
   var uiStateDel = Rxn<UiState>();
   var errorInfo = Rxn<FailureModel>();
-  RxList<ToDo?> list = <ToDo>[].obs;
+  RxList<ToDo> list = <ToDo>[].obs;
 
   @override
   void onInit() {

@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   final apiService = ApiService();
   var uiState = Rxn<UiState>(null);
   var errorInfo = Rxn<FailureModel>();
-  RxList<ToDo?> list = <ToDo>[].obs;
+  RxList<ToDo> list = <ToDo>[].obs;
 
   @override
   void onInit() {

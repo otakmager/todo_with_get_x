@@ -10,7 +10,7 @@ class ApiService {
   final Dio dio = Dio();
   static const baseUrl = "https://api.nstack.in/v1";
 
-  Future<List<ToDo?>> getToDo() async {
+  Future<List<ToDo>> getToDo() async {
     try {
       final response = await dio.get('$baseUrl/todos');
       if (response.statusCode == 200) {
@@ -27,7 +27,7 @@ class ApiService {
     }
   }
 
-  Future<ToDo?> getToDoById(String id) async {
+  Future<ToDo> getToDoById(String id) async {
     try {
       final response = await dio.get('$baseUrl/todos/$id');
       if (response.statusCode == 200) {

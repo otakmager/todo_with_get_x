@@ -1,7 +1,7 @@
 class ToDoData {
   int code;
   String message;
-  List<ToDo?> items;
+  List<ToDo> items;
 
   ToDoData({
     required this.code,
