@@ -5,7 +5,9 @@ import '../../data/model/todo.dart';
 class ToDoListTile extends StatefulWidget {
   final int index;
   final ToDo todo;
-  const ToDoListTile({super.key, required this.index, required this.todo});
+  final Function() navigateEdit;
+  final Function() deleteToDo;
+  const ToDoListTile({super.key, required this.index, required this.todo, required this.navigateEdit, required this.deleteToDo});
 
   @override
   State<ToDoListTile> createState() => _ToDoListTileState();

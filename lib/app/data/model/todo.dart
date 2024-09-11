@@ -13,7 +13,7 @@ class ToDoData {
       : code = json['code'] as int? ?? -999,
         message = json['message'] ?? 'Uknown error',
         items = (json['items'] as List<dynamic>?)
-                ?.map((e) => ToDo.fromJson(e as Map<dynamic, String>))
+                ?.map((e) => ToDo.fromJson(e as Map<String, dynamic>))
                 .toList() ??
             [];
 }
@@ -31,7 +31,7 @@ class ToDo {
     required this.isCompleted,
   });
 
-  ToDo.fromJson(Map<dynamic, String> json)
+  ToDo.fromJson(Map<String, dynamic> json)
       : id = json['id'] ?? '',
         title = json['title'] ?? '',
         description = json['description'] ?? '',

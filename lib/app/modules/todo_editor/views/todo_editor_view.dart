@@ -6,12 +6,16 @@ import '../controllers/todo_editor_controller.dart';
 
 class TodoEditorView extends GetView<TodoEditorController> {
   const TodoEditorView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final type = Get.arguments['type'] ?? 'add';
+    final id = Get.arguments['id'] ?? '';
     final formKey = GlobalKey<FormState>();
-    final titleController = TextEditingController();
-    final descriptionController = TextEditingController();
+
+    if (id != null || id.isNotEmpty()) {
+      controller.getToDobyId(id);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -25,7 +29,11 @@ class TodoEditorView extends GetView<TodoEditorController> {
           child: Column(
             children: [
               TextFormField(
-                controller: titleController,
+                controller:
+                    TextEditingController(text: controller.titleText.value),
+                onChanged: (value) {
+                  controller.setTitleText(value);
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter title';
@@ -37,7 +45,11 @@ class TodoEditorView extends GetView<TodoEditorController> {
                 ),
               ),
               TextFormField(
-                controller: descriptionController,
+                controller:
+                    TextEditingController(text: controller.descText.value),
+                onChanged: (value) {
+                  controller.setDescText(value);
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter description';
@@ -52,13 +64,10 @@ class TodoEditorView extends GetView<TodoEditorController> {
               ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    Get.back();
                     if (type == 'add') {
-                      Get.snackbar('Success', 'To Do added successfully',
-                          duration: const Duration(seconds: 5));
+                      controller.createToDo();
                     } else {
-                      Get.snackbar('Success', 'To Do update successfully',
-                          duration: const Duration(seconds: 5));
+                      controller.updateToDo();
                     }
                   }
                 },

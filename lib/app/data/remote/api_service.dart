@@ -23,7 +23,24 @@ class ApiService {
     } on DioException catch (e) {
       throw _handleDioError(e);
     } catch (e) {
-      throw CustomException(FailureModel(-1, "Uknown error"));
+      throw CustomException(FailureModel(-1, e.toString()));
+    }
+  }
+
+  Future<ToDo?> getToDoById(String id) async {
+    try {
+      final response = await dio.get('$baseUrl/todos/$id');
+      if (response.statusCode == 200) {
+        final data = ToDo.fromJson(response.data);
+        return data;
+      } else {
+        throw CustomException(
+            FailureModel(response.statusCode, response.statusMessage));
+      }
+    } on DioException catch (e) {
+      throw _handleDioError(e);
+    } catch (e) {
+      throw CustomException(FailureModel(-1, e.toString()));
     }
   }
 
@@ -43,7 +60,7 @@ class ApiService {
     } on DioException catch (e) {
       throw _handleDioError(e);
     } catch (e) {
-      throw CustomException(FailureModel(-1, "Uknown error"));
+      throw CustomException(FailureModel(-1, e.toString()));
     }
   }
 
@@ -63,7 +80,7 @@ class ApiService {
     } on DioException catch (e) {
       throw _handleDioError(e);
     } catch (e) {
-      throw CustomException(FailureModel(-1, "Uknown error"));
+      throw CustomException(FailureModel(-1, e.toString()));
     }
   }
 
@@ -79,7 +96,7 @@ class ApiService {
     } on DioException catch (e) {
       throw _handleDioError(e);
     } catch (e) {
-      throw CustomException(FailureModel(-1, "Uknown error"));
+      throw CustomException(FailureModel(-1, e.toString()));
     }
   }
 

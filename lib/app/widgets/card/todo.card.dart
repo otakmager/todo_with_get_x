@@ -8,19 +8,23 @@ class ToDoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Text(
-            todo.title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-          ),
-          Text(todo.description,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              softWrap: false,
-              style: const TextStyle(fontSize: 11)),
-        ],
+    return SizedBox(
+      height: 64,
+      width: 120,
+      child: Card(
+        child: Column(
+          children: [
+            Text(
+              todo.title,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            Text(todo.description,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                softWrap: false,
+                style: const TextStyle(fontSize: 11)),
+          ],
+        ),
       ),
     );
   }

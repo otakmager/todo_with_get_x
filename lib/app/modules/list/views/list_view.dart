@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../data/model/todo.dart';
+import '../../../data/model/ui_state.dart';
 import '../../../widgets/list_tile/todo.listtile.dart';
 import '../controllers/list_controller.dart';
 
@@ -19,7 +19,7 @@ class ListToDoView extends GetView<ListController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.toNamed('/todo-editor', arguments: {'type': 'add'});
+          Get.toNamed('/todo-editor', arguments: {'type': 'add', 'id': ''});
         },
         child: const Icon(Icons.add),
       ),
@@ -30,19 +30,56 @@ class ListToDoView extends GetView<ListController> {
               PointerDeviceKind.mouse,
             },
           ),
-          child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return ToDoListTile(
-                  index: index,
-                  todo: ToDo(
-                    id: "${index + 1}",
-                    title: 'Title $index',
-                    description: 'Description $index',
-                    isCompleted: false,
-                  ));
-            },
-          )),
+          child: Obx(() {
+            if (controller.uiStateGet.value == UiState.loading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (controller.uiStateGet.value == UiState.error) {
+              return Column(
+                children: [
+                  const Text(
+                    'Error!',
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                      onPressed: () {
+                        controller.showErrorDialog();
+                      },
+                      child: const Text('Show Error')),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                      onPressed: () {
+                        controller.getToDo();
+                      },
+                      child: const Text('Retry')),
+                ],
+              );
+            } else if (controller.uiStateGet.value == UiState.success) {
+              return ListView.builder(
+                itemCount: controller.list.length,
+                itemBuilder: (context, index) {
+                  return ToDoListTile(
+                    index: index,
+                    todo: controller.list[index]!,
+                    navigateEdit: () {
+                      Get.toNamed('/todo-editor', arguments: {
+                        'type': 'edit',
+                        'id': controller.list[index]!.id
+                      });
+                    },
+                    deleteToDo: () {
+                      controller.deleteToDo(controller.list[index]!.id);
+                    },
+                  );
+                },
+              );
+            } else {
+              return const Center(child: Text('No Data'));
+            }
+          })),
     );
   }
 }

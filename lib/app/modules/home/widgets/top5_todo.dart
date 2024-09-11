@@ -11,16 +11,15 @@ class Top5ToDo extends StatelessWidget {
   Widget build(BuildContext context) {
     if (list != null && list!.isNotEmpty) {
       final top5List = list!.take(5).toList();
-      return Column(
-        children: [
-          ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: top5List.length,
-            itemBuilder: (context, index) {
-              return ToDoCard(todo: top5List[index]!);
-            },
-          ),
-        ],
+      return SizedBox(
+        height: 80,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: top5List.length,
+          itemBuilder: (context, index) {
+            return ToDoCard(todo: top5List[index]!);
+          },
+        ),
       );
     } else {
       return Container(
