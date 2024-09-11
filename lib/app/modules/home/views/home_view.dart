@@ -13,20 +13,21 @@ class HomeView extends GetView<HomeController> {
         title: const Text('My To Do'),
         centerTitle: true,
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text('Top 5 To Do',
+            const Text('Top 5 To Do',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-            SizedBox(height: 8),
-            Top5ToDo(
+            const SizedBox(height: 8),
+            const Top5ToDo(
               list: [],
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Center(
-                child:
-                    ElevatedButton(onPressed: null, child: Text('View All'))),
+                child: ElevatedButton(
+                    onPressed: () => Get.toNamed('/list'),
+                    child: const Text('View All'))),
           ],
         ),
       ),

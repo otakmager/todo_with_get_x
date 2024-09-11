@@ -1,24 +1,48 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../data/model/todo.dart';
+import '../../../widgets/list_tile/todo.listtile.dart';
 import '../controllers/list_controller.dart';
 
-class ListView extends GetView<ListController> {
-  const ListView({super.key});
+class ListToDoView extends GetView<ListController> {
+  const ListToDoView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ListView'),
+        title: const Text('To Do List'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'ListView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: const Icon(Icons.add),
       ),
+      body: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            dragDevices: {
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            },
+          ),
+          child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return ToDoListTile(
+                  index: index,
+                  todo: ToDo(
+                    id: "${index + 1}",
+                    title: 'Title $index',
+                    description: 'Description $index',
+                    isCompleted: false,
+                  ));
+            },
+          )),
     );
   }
 }

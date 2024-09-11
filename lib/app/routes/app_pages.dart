@@ -20,7 +20,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST,
-      page: () => const ListView(),
+      page: () => const ListToDoView(),
       binding: ListBinding(),
     ),
   ];
