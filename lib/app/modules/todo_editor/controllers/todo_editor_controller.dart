@@ -46,8 +46,6 @@ class TodoEditorController extends GetxController {
       todo.value = await apiService.getToDoById(id);
       setTitleText(todo.value?.title);
       setDescText(todo.value?.description);
-      print("title: ${titleText.value}");
-      print("desc: ${descText.value}");
       setUiStateGet(UiState.success);
     } on CustomException catch (e) {
       errorInfo.value = FailureModel(e.statusCode, e.message);

@@ -40,8 +40,6 @@ class ApiService {
     } on DioException catch (e) {
       throw _handleDioError(e);
     } catch (e) {
-      print("Apiservice - error biasa");
-      print("error: ${e.toString()}");
       throw CustomException(FailureModel(-1, e.toString()));
     }
   }
