@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
+import '../widgets/top5_todo.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -10,13 +10,24 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
+        title: const Text('My To Do'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Text('Top 5 To Do',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+            SizedBox(height: 8),
+            Top5ToDo(
+              list: [],
+            ),
+            SizedBox(height: 24),
+            Center(
+                child:
+                    ElevatedButton(onPressed: null, child: Text('View All'))),
+          ],
         ),
       ),
     );
