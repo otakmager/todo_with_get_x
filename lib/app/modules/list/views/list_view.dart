@@ -1,7 +1,5 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../data/model/ui_state.dart';
@@ -19,7 +17,7 @@ class ListToDoView extends GetView<ListController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.toNamed('/todo-editor', arguments: {'type': 'add', 'id': ''});
+          navigateAdd();
         },
         child: const Icon(Icons.add),
       ),
@@ -65,10 +63,7 @@ class ListToDoView extends GetView<ListController> {
                     index: index,
                     todo: controller.list[index]!,
                     navigateEdit: () {
-                      Get.toNamed('/todo-editor', arguments: {
-                        'type': 'edit',
-                        'id': controller.list[index]!.id
-                      });
+                      navigateEdit(controller.list[index]!.id);
                     },
                     deleteToDo: () {
                       controller.deleteToDo(controller.list[index]!.id);
@@ -81,5 +76,15 @@ class ListToDoView extends GetView<ListController> {
             }
           })),
     );
+  }
+
+  Future<void> navigateAdd() async {
+    await Get.toNamed('/todo-editor', arguments: {'type': 'add', 'id': ''});
+    controller.getToDo();
+  }
+
+  Future<void> navigateEdit(String id) async {
+    await Get.toNamed('/todo-editor', arguments: {'type': 'edit', 'id': id});
+    controller.getToDo();
   }
 }

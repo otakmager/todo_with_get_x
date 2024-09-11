@@ -57,11 +57,16 @@ class HomeView extends GetView<HomeController> {
             const SizedBox(height: 24),
             Center(
                 child: ElevatedButton(
-                    onPressed: () => Get.toNamed('/list'),
+                    onPressed: () => navigateList(),
                     child: const Text('View All'))),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> navigateList() async {
+    await Get.toNamed('/list');
+    controller.getToDo();
   }
 }
