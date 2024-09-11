@@ -29,8 +29,8 @@ class TodoEditorView extends GetView<TodoEditorController> {
           child: Column(
             children: [
               Obx(() => TextFormField(
-                    controller:
-                        TextEditingController(text: controller.titleText.value),
+                    controller: TextEditingController(
+                        text: controller.todo.value?.title),
                     onChanged: (value) {
                       controller.setTitleText(value);
                     },
@@ -46,8 +46,8 @@ class TodoEditorView extends GetView<TodoEditorController> {
                   )),
               Obx(
                 () => TextFormField(
-                  controller:
-                      TextEditingController(text: controller.descText.value),
+                  controller: TextEditingController(
+                      text: controller.todo.value?.description),
                   onChanged: (value) {
                     controller.setDescText(value);
                   },
