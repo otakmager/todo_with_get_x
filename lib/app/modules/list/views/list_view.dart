@@ -33,6 +33,8 @@ class ListToDoView extends GetView<ListController> {
               return const Center(child: CircularProgressIndicator());
             } else if (controller.uiStateGet.value == UiState.error) {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     'Error!',
