@@ -14,7 +14,7 @@ class TodoEditorView extends GetView<TodoEditorController> {
     final formKey = GlobalKey<FormState>();
 
     if (id != null || id.isNotEmpty()) {
-      controller.getToDobyId(id);
+      controller.getToDoById(id);
     }
 
     return Scaffold(
@@ -28,36 +28,38 @@ class TodoEditorView extends GetView<TodoEditorController> {
           key: formKey,
           child: Column(
             children: [
-              TextFormField(
-                controller:
-                    TextEditingController(text: controller.titleText.value),
-                onChanged: (value) {
-                  controller.setTitleText(value);
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter title';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Title',
-                ),
-              ),
-              TextFormField(
-                controller:
-                    TextEditingController(text: controller.descText.value),
-                onChanged: (value) {
-                  controller.setDescText(value);
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter description';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Description',
+              Obx(() => TextFormField(
+                    controller:
+                        TextEditingController(text: controller.titleText.value),
+                    onChanged: (value) {
+                      controller.setTitleText(value);
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter title';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Title',
+                    ),
+                  )),
+              Obx(
+                () => TextFormField(
+                  controller:
+                      TextEditingController(text: controller.descText.value),
+                  onChanged: (value) {
+                    controller.setDescText(value);
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter description';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Description',
+                  ),
                 ),
               ),
               const SizedBox(height: 32),

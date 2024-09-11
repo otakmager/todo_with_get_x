@@ -31,8 +31,8 @@ class ApiService {
     try {
       final response = await dio.get('$baseUrl/todos/$id');
       if (response.statusCode == 200) {
-        final data = ToDo.fromJson(response.data);
-        return data;
+        final data = SingleToDoData.fromJson(response.data);
+        return data.todo;
       } else {
         throw CustomException(
             FailureModel(response.statusCode, response.statusMessage));
@@ -40,6 +40,8 @@ class ApiService {
     } on DioException catch (e) {
       throw _handleDioError(e);
     } catch (e) {
+      print("Apiservice - error biasa");
+      print("error: ${e.toString()}");
       throw CustomException(FailureModel(-1, e.toString()));
     }
   }

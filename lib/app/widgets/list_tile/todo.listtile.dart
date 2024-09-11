@@ -7,7 +7,12 @@ class ToDoListTile extends StatefulWidget {
   final ToDo todo;
   final Function() navigateEdit;
   final Function() deleteToDo;
-  const ToDoListTile({super.key, required this.index, required this.todo, required this.navigateEdit, required this.deleteToDo});
+  const ToDoListTile(
+      {super.key,
+      required this.index,
+      required this.todo,
+      required this.navigateEdit,
+      required this.deleteToDo});
 
   @override
   State<ToDoListTile> createState() => _ToDoListTileState();
@@ -23,6 +28,13 @@ class _ToDoListTileState extends State<ToDoListTile> {
       title: Text(widget.todo.title),
       subtitle: Text(widget.todo.description),
       trailing: PopupMenuButton(
+        onSelected: (value) {
+          if (value == 'edit') {
+            widget.navigateEdit();
+          } else if (value == 'delete') {
+            widget.deleteToDo();
+          }
+        },
         itemBuilder: (context) => [
           const PopupMenuItem(
             value: 'edit',

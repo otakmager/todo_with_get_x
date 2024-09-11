@@ -13,7 +13,7 @@ class ListController extends GetxController {
   var uiStateGet = Rxn<UiState>();
   var uiStateDel = Rxn<UiState>();
   var errorInfo = Rxn<FailureModel>();
-  List<ToDo?> list = <ToDo>[].obs;
+  RxList<ToDo?> list = <ToDo>[].obs;
 
   @override
   void onInit() {
@@ -35,11 +35,9 @@ class ListController extends GetxController {
 
   Future<void> getToDo() async {
     setUiStateGet(UiState.loading);
-    showLoadingDialog();
 
     try {
-      Get.back();
-      list = await apiService.getToDo();
+      list.value = await apiService.getToDo();
       setUiStateGet(UiState.success);
     } on CustomException catch (e) {
       errorInfo.value = FailureModel(e.statusCode, e.message);

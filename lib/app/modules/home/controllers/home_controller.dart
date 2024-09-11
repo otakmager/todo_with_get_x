@@ -6,7 +6,6 @@ import '../../../data/model/todo.dart';
 import '../../../data/model/ui_state.dart';
 import '../../../data/remote/api_service.dart';
 import '../../../widgets/dialog/dialog_error.dart';
-import '../../../widgets/dialog/dialog_loading.dart';
 
 class HomeController extends GetxController {
   final apiService = ApiService();
