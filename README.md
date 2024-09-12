@@ -35,4 +35,4 @@ Preview yang disediakan adalah screenshot pada platform Android yang diambil pad
 
 ## Attention
 
-API yang digunakan kemungkinan menyimpan data berbeda tempat berdasarkan sumber jaringan. Sumber jaringan tersebut yaitu dari jaringan Wi-Fi atau dari jaringan mobile data. Hal tersebut dapat membuat ketidakcocokan data yang diterima (inkonsistensi). Namun, API yang digunakan masih dapat dipakai untuk urusan CRUD.
+API yang digunakan menyimpan data berbeda tempat berdasarkan IP address. Hal tersebut dapat membuat ketidakcocokan data yang diterima (inkonsistensi). Namun, API yang digunakan masih dapat dipakai untuk urusan CRUD. Hal ini kemungkinan terjadi untuk melindungi privasi pengguna dan memberikan ruang untuk para frontend dev yang mecoba API ini agar tidak saling overwrite.
